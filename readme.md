@@ -1,6 +1,6 @@
 Credits to https://github.com/josefadamcik/SofleKeyboard
 
-![Keyboard](https://imgur.com/a/WB8NFW2)
+![Keyboard](https://i.imgur.com/K0SJ8Lt.jpeg)
 
 Where did I source the parts?
 
