@@ -1,5 +1,7 @@
 Credits to https://github.com/josefadamcik/SofleKeyboard
 
+![Keyboard](https://imgur.com/a/WB8NFW2)
+
 Where did I source the parts?
 
 - PCB: manufactered by JLCPCB using the gerber files from the original repo. Make sure you choose the colors you want
