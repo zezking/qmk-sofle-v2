@@ -15,7 +15,7 @@ Where did I source the parts?
 - OLED display module: [0.91Inch OLED Display Module, I2C Interface, 128X32 LCD Screen SSD1306 Blue/White Light, 3.3V5V](https://www.aliexpress.com/item/1005007302239124.html?spm=a2g0o.order_detail.order_detail_item.3.6204f19cTVuRRy)
 - Pro Micro: [TENSTAR ROBOT Pro Micro With the Bootloader Black/Blue ATmega32U4 5V/16MHz Module Controller ](https://www.aliexpress.com/item/32849563958.html?spm=a2g0o.order_list.order_list_main.84.514a1802GQBuEG) The original repo states that you should not use arduino pro micros but I purchased them by accident and they worked fine. Maybe I am missing something here. It clearly shows the pro micro is arduino and the firmware is flashed without any issues. Do make sure you get one with ATmega32U4 chip
 
-The rest of the parts can be found mostly on Aliexpress. I will update the list if there is anything tricky to find.
+The rest of the parts can be found mostly on AliExpress. I will update the list if there is anything tricky to find.
 
 
 
