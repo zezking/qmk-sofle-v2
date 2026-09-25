@@ -7,9 +7,9 @@ comes from the local QMK sofle/rev1 info (keymap-drawer/sofle_layout.json),
 whose key order matches the LAYOUT macro argument order.
 
 Usage:
-    python3 scripts/render_keymap.py                    # QWERTY only (default)
-    python3 scripts/render_keymap.py QWERTY LOWER       # specific layers
-    python3 scripts/render_keymap.py all                # every layer
+    python3 scripts/render_keymap.py                          # all layers except COLEMAK (default)
+    python3 scripts/render_keymap.py QWERTY LOWER             # specific layers
+    python3 scripts/render_keymap.py all                      # every layer
     keymap draw keymap-drawer/keymap.yaml -o keymap-drawer/keymap.svg
 
 CI runs the same two commands (.github/workflows/draw-keymap.yml) from the
@@ -165,7 +165,7 @@ def main() -> int:
         description="Render keymap.c layers into keymap-drawer YAML")
     ap.add_argument(
         "layers", nargs="*",
-        help="layer names to render (default: QWERTY; 'all' = every layer)")
+        help="layer names to render (default: all except COLEMAK; 'all' = every layer)")
     args = ap.parse_args()
 
     src = KEYMAP_C.read_text()
@@ -175,7 +175,7 @@ def main() -> int:
         return 1
 
     names = [n for n, _ in all_layers]
-    wanted = args.layers or ["QWERTY"]
+    wanted = args.layers or ["QWERTY", "LOWER", "RAISE", "ADJUST"]
     if wanted == ["all"]:
         wanted = names
     unknown = [n for n in wanted if n not in names]

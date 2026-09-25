@@ -2,18 +2,21 @@ Credits to https://github.com/josefadamcik/SofleKeyboard
 
 ## Keymap diagram
 
-The QWERTY base layer is rendered as a diagram by
-[keymap-drawer](https://github.com/caksoylar/keymap-drawer) every time `keymap.c`
-is pushed to `main` (see
-[.github/workflows/draw-keymap.yml](.github/workflows/draw-keymap.yml));
-holding LOWER + RAISE together activates the ADJUST layer.
+The keymap is rendered as a diagram by
+[keymap-drawer](https://github.com/caksoylar/keymap-drawer) every time
+`keymap.c` is pushed to `main` (see
+[.github/workflows/draw-keymap.yml](.github/workflows/draw-keymap.yml)):
+QWERTY, LOWER, RAISE and ADJUST — everything except the dormant COLEMAK layer.
+`▽` marks transparent keys that fall through to the base layer, and holding
+LOWER + RAISE together activates the ADJUST layer.
 
 ![Keymap diagram](keymap-drawer/keymap.svg)
 
-To re-render locally (pass layer names for more, or `all` for every layer):
+To re-render locally (pass layer names for a subset, or `all` for every layer
+including COLEMAK):
 
 ```sh
-python3 scripts/render_keymap.py              # QWERTY only (default)
+python3 scripts/render_keymap.py              # all layers except COLEMAK (default)
 python3 scripts/render_keymap.py all          # every layer
 keymap draw keymap-drawer/keymap.yaml -o keymap-drawer/keymap.svg
 ```
