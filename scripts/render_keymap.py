@@ -7,12 +7,15 @@ comes from the local QMK sofle/rev1 info (keymap-drawer/sofle_layout.json),
 whose key order matches the LAYOUT macro argument order.
 
 Usage:
-    python3 scripts/render_keymap.py           # writes keymap-drawer/keymap.yaml
+    python3 scripts/render_keymap.py                    # QWERTY only (default)
+    python3 scripts/render_keymap.py QWERTY LOWER       # specific layers
+    python3 scripts/render_keymap.py all                # every layer
     keymap draw keymap-drawer/keymap.yaml -o keymap-drawer/keymap.svg
 
 CI runs the same two commands (.github/workflows/draw-keymap.yml) from the
 repo root; qmk_info_json paths inside the YAML resolve against the CWD.
 """
+import argparse
 import json
 import re
 import sys
@@ -155,11 +158,29 @@ def parse_layers(src: str):
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser(
+        description="Render keymap.c layers into keymap-drawer YAML")
+    ap.add_argument(
+        "layers", nargs="*",
+        help="layer names to render (default: QWERTY; 'all' = every layer)")
+    args = ap.parse_args()
+
     src = KEYMAP_C.read_text()
-    layers = parse_layers(src)
-    if not layers:
+    all_layers = parse_layers(src)
+    if not all_layers:
         print("error: no LAYOUT() blocks found in keymap.c", file=sys.stderr)
         return 1
+
+    names = [n for n, _ in all_layers]
+    wanted = args.layers or ["QWERTY"]
+    if wanted == ["all"]:
+        wanted = names
+    unknown = [n for n in wanted if n not in names]
+    if unknown:
+        print(f"error: unknown layer(s) {unknown}; available: {names}",
+              file=sys.stderr)
+        return 1
+    layers = [(n, k) for n, k in all_layers if n in wanted]
 
     with open(LAYOUT_JSON) as f:
         n_layout_keys = len(json.load(f)["layouts"]["LAYOUT"]["layout"])
@@ -188,14 +209,22 @@ def main() -> int:
                            f"{k}: {yq(v)}" for k, v in lg.items()) + "}"))
                 for lg in (legend(k) for k in row))
             out.append(f"    - [{cells}]")
+    has_transparent = any(
+        lg.get("t") == "\u25bd" for _, keys in layers
+        for lg in (legend(k) for k in keys))
+    footer = "  \u00b7  ".join(
+        ["sofle v2"]
+        + (["\u25bd = transparent"] if has_transparent else [])
+        + ["hold Lower+Raise = ADJUST"])
     out += [
         "draw_config:",
-        '  footer_text: "sofle v2  \u00b7  \u25bd = transparent  \u00b7  hold Lower+Raise = ADJUST"',
+        f"  footer_text: {yq(footer)}",
     ]
 
     OUT_DIR.mkdir(exist_ok=True)
     OUT_YAML.write_text("\n".join(out) + "\n")
-    print(f"wrote {OUT_YAML.relative_to(REPO)} ({len(layers)} layers, "
+    print(f"wrote {OUT_YAML.relative_to(REPO)} "
+          f"(layers: {', '.join(n for n, _ in layers)}; "
           f"{EXPECTED_KEYS} keys each)")
     return 0
 
