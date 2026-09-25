@@ -1,0 +1,48 @@
+name: Draw keymap
+
+# Re-renders keymap-drawer/keymap.svg whenever the keymap changes.
+# Manual runs also possible from the Actions tab ("Run workflow").
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "keymap.c"
+      - "scripts/render_keymap.py"
+      - "keymap-drawer/sofle_layout.json"
+      - ".github/workflows/draw-keymap.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write # allow the workflow to commit the rendered diagram
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install keymap-drawer
+        run: pip install keymap-drawer
+
+      - name: Parse keymap.c and draw SVG
+        run: |
+          python3 scripts/render_keymap.py
+          keymap draw keymap-drawer/keymap.yaml -o keymap-drawer/keymap.svg
+
+      - name: Commit rendered diagram
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add keymap-drawer/keymap.yaml keymap-drawer/keymap.svg
+          if git diff --cached --quiet; then
+            echo "No changes to render"
+          else
+            git commit -m "Render keymap diagram [skip ci]"
+            git pull --rebase origin main
+            git push
+          fi

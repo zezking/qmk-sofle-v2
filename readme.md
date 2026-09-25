@@ -1,5 +1,23 @@
 Credits to https://github.com/josefadamcik/SofleKeyboard
 
+## Keymap diagram
+
+The full layered keymap is rendered as a diagram by
+[keymap-drawer](https://github.com/caksoylar/keymap-drawer) every time `keymap.c`
+is pushed to `main` (see
+[.github/workflows/draw-keymap.yml](.github/workflows/draw-keymap.yml));
+`▽` marks transparent keys that fall through to the base layer, and holding
+LOWER + RAISE together activates the ADJUST layer.
+
+![Keymap diagram](keymap-drawer/keymap.svg)
+
+To re-render locally:
+
+```sh
+python3 scripts/render_keymap.py
+keymap draw keymap-drawer/keymap.yaml -o keymap-drawer/keymap.svg
+```
+
 ![Keyboard](https://i.imgur.com/K0SJ8Lt.jpeg)
 
 Where did I source the parts?
