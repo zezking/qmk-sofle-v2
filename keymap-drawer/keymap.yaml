@@ -3,11 +3,11 @@ layout:
   qmk_info_json: keymap-drawer/sofle_layout.json
 layers:
   QWERTY:
-    - ["Esc", {t: "1", s: "!"}, {t: "2", s: "@"}, {t: "3", s: "#"}, {t: "4", s: "$"}, {t: "5", s: "%"}, {t: "6", s: "^"}, {t: "7", s: "&"}, {t: "8", s: "*"}, {t: "9", s: "("}, {t: "0", s: ")"}, {t: "`", s: "~"}]
-    - ["Tab", {t: "q", s: "Q"}, {t: "w", s: "W"}, {t: "e", s: "E"}, {t: "r", s: "R"}, {t: "t", s: "T"}, {t: "y", s: "Y"}, {t: "u", s: "U"}, {t: "i", s: "I"}, {t: "o", s: "O"}, {t: "p", s: "P"}, "Bksp"]
-    - [{h: "Ctrl"}, {t: "a", s: "A"}, {t: "s", s: "S"}, {t: "d", s: "D"}, {t: "f", s: "F"}, {t: "g", s: "G"}, {t: "h", s: "H"}, {t: "j", s: "J"}, {t: "k", s: "K"}, {t: "l", s: "L"}, {t: ";", s: ":"}, {t: "'", s: "\""}]
-    - [{h: "Shift"}, {t: "z", s: "Z"}, {t: "x", s: "X"}, {t: "c", s: "C"}, {t: "v", s: "V"}, {t: "b", s: "B"}, "Mute", '', {t: "n", s: "N"}, {t: "m", s: "M"}, {t: ",", s: "<"}, {t: ".", s: ">"}, {t: "/", s: "?"}, {h: "Shift"}]
-    - [{h: "Ctrl"}, {h: "Alt"}, {h: "GUI"}, {h: "Lower"}, "Enter"]
-    - ['', {h: "Raise"}, {h: "Ctrl"}, {h: "Alt"}, {h: "GUI"}]
+    - ["⎋", {t: "1", s: "!"}, {t: "2", s: "@"}, {t: "3", s: "#"}, {t: "4", s: "$"}, {t: "5", s: "%"}, {t: "6", s: "^"}, {t: "7", s: "&"}, {t: "8", s: "*"}, {t: "9", s: "("}, {t: "0", s: ")"}, {t: "`", s: "~"}]
+    - ["⇥", {t: "q", s: "Q"}, {t: "w", s: "W"}, {t: "e", s: "E"}, {t: "r", s: "R"}, {t: "t", s: "T"}, {t: "y", s: "Y"}, {t: "u", s: "U"}, {t: "i", s: "I"}, {t: "o", s: "O"}, {t: "p", s: "P"}, "⌫"]
+    - [{h: "⌃"}, {t: "a", s: "A"}, {t: "s", s: "S"}, {t: "d", s: "D"}, {t: "f", s: "F"}, {t: "g", s: "G"}, {t: "h", s: "H"}, {t: "j", s: "J"}, {t: "k", s: "K"}, {t: "l", s: "L"}, {t: ";", s: ":"}, {t: "'", s: "\""}]
+    - [{h: "⇧"}, {t: "z", s: "Z"}, {t: "x", s: "X"}, {t: "c", s: "C"}, {t: "v", s: "V"}, {t: "b", s: "B"}, "Mute", '', {t: "n", s: "N"}, {t: "m", s: "M"}, {t: ",", s: "<"}, {t: ".", s: ">"}, {t: "/", s: "?"}, {h: "⇧"}]
+    - [{h: "⌃"}, {h: "⌥"}, {h: "⌘"}, {h: "Lower"}, "⏎"]
+    - ['', {h: "Raise"}, {h: "⌃"}, {h: "⌥"}, {h: "⌘"}]
 draw_config:
-  footer_text: "sofle v2  ·  hold Lower+Raise = ADJUST"
+  footer_text: "sofle v2 (Mac mode)  ·  hold Lower+Raise = ADJUST"

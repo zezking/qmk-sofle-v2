@@ -32,11 +32,14 @@ EXPECTED_KEYS = 60  # sofle/rev1 LAYOUT including two encoder slots
 # Legends: QMK keycode -> dict of keymap-drawer LayoutKey fields
 # (t=tap center, s=shifted top, h=hold bottom). Unmapped codes fall back to
 # the raw name (e.g. KC_F5 -> F5), so new keycodes never break the render.
+# Mac-mode legends: mod keys use Mac symbols, and the custom keycodes
+# (process_record_user + mod_config in keymap.c) are labeled with what they
+# actually send when swap_lctl_lgui is ON (Mac mode).
 LEGENDS = {
-    "KC_ESC": {"t": "Esc"},
-    "KC_TAB": {"t": "Tab"},
-    "KC_BSPC": {"t": "Bksp"},
-    "KC_ENT": {"t": "Enter"},
+    "KC_ESC": {"t": "\u238b"},          # ⎋
+    "KC_TAB": {"t": "\u21e5"},          # ⇥
+    "KC_BSPC": {"t": "\u232b"},         # ⌫
+    "KC_ENT": {"t": "\u23ce"},          # ⏎
     "KC_SPC": {"t": ""},
     "KC_MUTE": {"t": "Mute"},
     "KC_GRV": {"t": "`", "s": "~"},
@@ -66,32 +69,32 @@ LEGENDS = {
     "KC_DOT": {"t": ".", "s": ">"},
     "KC_SLSH": {"t": "/", "s": "?"},
     "KC_INS": {"t": "Ins"},
-    "KC_DEL": {"t": "Del"},
+    "KC_DEL": {"t": "\u2326"},          # ⌦
     "KC_PSCR": {"t": "PrtSc"},
     "KC_APP": {"t": "Menu"},
-    "KC_CAPS": {"t": "Caps"},
+    "KC_CAPS": {"t": "\u21ea"},         # ⇪
     "KC_PGUP": {"t": "PgUp"},
     "KC_PGDN": {"t": "PgDn"},
     "KC_UP": {"t": "\u2191"},
     "KC_DOWN": {"t": "\u2193"},
     "KC_LEFT": {"t": "\u2190"},
     "KC_RGHT": {"t": "\u2192"},
-    "KC_LSFT": {"h": "Shift"},
-    "KC_RSFT": {"h": "Shift"},
-    "KC_LCTL": {"h": "Ctrl"},
-    "KC_RCTL": {"h": "Ctrl"},
-    "KC_LALT": {"h": "Alt"},
-    "KC_RALT": {"h": "Alt"},
-    "KC_LGUI": {"h": "GUI"},
-    "KC_RGUI": {"h": "GUI"},
+    "KC_LSFT": {"h": "\u21e7"},          # ⇧
+    "KC_RSFT": {"h": "\u21e7"},
+    "KC_LCTL": {"h": "\u2303"},          # ⌃
+    "KC_RCTL": {"h": "\u2303"},
+    "KC_LALT": {"h": "\u2325"},          # ⌥
+    "KC_RALT": {"h": "\u2325"},
+    "KC_LGUI": {"h": "\u2318"},          # ⌘
+    "KC_RGUI": {"h": "\u2318"},
     "TL_LOWR": {"h": "Lower"},
     "TL_UPPR": {"h": "Raise"},
-    # custom keycodes (process_record_user in keymap.c)
-    "KC_PRVWD": {"t": "Word\u2190"},
-    "KC_NXTWD": {"t": "Word\u2192"},
-    "KC_LSTRT": {"t": "Home"},
-    "KC_LEND": {"t": "End"},
-    "C(KC_BSPC)": {"t": "\u2303Bksp"},
+    # custom keycodes (process_record_user in keymap.c) -- Mac-mode output
+    "KC_PRVWD": {"t": "\u2325\u2190"},  # ⌥←
+    "KC_NXTWD": {"t": "\u2325\u2192"},  # ⌥→
+    "KC_LSTRT": {"t": "\u2318\u2190"},  # ⌘←
+    "KC_LEND": {"t": "\u2318\u2192"},   # ⌘→
+    "C(KC_BSPC)": {"t": "\u2318\u232b"},  # ⌘⌫ (CG swap rewrites C() chords)
     "C(KC_Z)": {"t": "Undo"},
     "C(KC_X)": {"t": "Cut"},
     "C(KC_C)": {"t": "Copy"},
@@ -213,7 +216,7 @@ def main() -> int:
         lg.get("t") == "\u25bd" for _, keys in layers
         for lg in (legend(k) for k in keys))
     footer = "  \u00b7  ".join(
-        ["sofle v2"]
+        ["sofle v2 (Mac mode)"]
         + (["\u25bd = transparent"] if has_transparent else [])
         + ["hold Lower+Raise = ADJUST"])
     out += [
