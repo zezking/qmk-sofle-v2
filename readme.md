@@ -18,7 +18,7 @@ python3 scripts/render_keymap.py all          # every layer
 keymap draw keymap-drawer/keymap.yaml -o keymap-drawer/keymap.svg
 ```
 
-![Keyboard](https://i.imgur.com/K0SJ8Lt.jpeg)
+![Keyboard](keyboard.jpeg)
 
 Where did I source the parts?
 
