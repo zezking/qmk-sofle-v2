@@ -108,6 +108,7 @@ LEGENDS = {
     "KC_MPRV": {"t": "Prev"},
     "KC_MPLY": {"t": "Play"},
     "KC_MNXT": {"t": "Next"},
+    "TG(_GAMING)": {"t": "Game"},
     "_______": {"t": "\u25bd"},  # transparent
     "XXXXXXX": {"t": ""},  # KC_NO
 }
