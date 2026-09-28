@@ -134,7 +134,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                    _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
   ),
 /* GAMING (toggle from ADJUST: GAME; all keys transparent = QWERTY passthrough,
- * GUI/Win thumb keys disabled so an accidental press can't steal focus)
+ * GUI/Win thumb keys disabled so an accidental press can't steal focus.
+ * Left thumb: Enter moved to the outer (dead GUI) slot, inner slot is Space
+ * for jump while the right hand is on the mouse.)
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -144,7 +146,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LCTR | LAlt |  --  |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt |  --  |
+ *            | LCTR | LAlt | Enter|LOWER | /Space  /       \Space \  |RAISE | RCTR | RAlt |  --  |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
@@ -153,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______,
-                       _______, _______, XXXXXXX, _______, _______,       _______, _______, _______, _______, XXXXXXX
+                       _______, _______, KC_ENT, _______, KC_SPC,       _______, _______, _______, _______, XXXXXXX
 )
 };
 // clang-format on
