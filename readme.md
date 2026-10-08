@@ -21,6 +21,20 @@ python3 scripts/render_keymap.py all          # every layer
 keymap draw keymap-drawer/keymap.yaml -o keymap-drawer/keymap.svg
 ```
 
+## Flashing
+
+Build with `qmk compile -kb sofle/rev1 -km zezking`, then flash each half
+separately (USB into that half, TRRS unplugged):
+
+```sh
+scripts/flash.sh                       # defaults to ~/qmk_firmware/sofle_rev1_zezking.hex
+scripts/flash.sh path/to/firmware.hex
+```
+
+Start the script first, then tap RST once. The Pro Micro bootloader only stays
+up for ~8 seconds, which `qmk flash` can miss; the script catches the port and
+runs avrdude immediately. Both halves take the same firmware.
+
 ![Keyboard](keyboard.jpeg)
 
 Where did I source the parts?
