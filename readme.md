@@ -35,6 +35,10 @@ Start the script first, then tap RST once. The Pro Micro bootloader only stays
 up for ~8 seconds, which `qmk flash` can miss; the script catches the port and
 runs avrdude immediately. Both halves take the same firmware.
 
+Works on macOS (`/dev/cu.usbmodem*`) and Linux (`/dev/ttyACM*`). On Linux
+(e.g. CachyOS) run `~/qmk_firmware/util/install_udev.sh` once so your user can
+write to the port and ModemManager leaves the board alone.
+
 ![Keyboard](keyboard.jpeg)
 
 Where did I source the parts?
